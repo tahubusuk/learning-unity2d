@@ -1,27 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine.XR;
 
-public class GameState : MonoBehaviour
+namespace DefaultNamespace
 {
-    [SerializeField] MenuController menuController;
-    [SerializeField] PlayerControllers playerControllers;
-
-    private void Start()
+    public abstract class GameState
     {
-        
-    }
-
-    private void Update()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public virtual void ChangeState(GameController gameController)
         {
-            Debug.Log("key pressed");
-            if (menuController is null)
-            {
-                Debug.Log("menu is null");
-            }
-            menuController.OpenOrCloseMenu();
+            
         }
+
     }
 }
