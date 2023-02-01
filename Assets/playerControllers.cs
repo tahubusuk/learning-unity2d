@@ -22,50 +22,7 @@ public class playerControllers : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     public AnimationControl animationControl;
 
-    private enum _playerState
-    {
-        PLAYER_ATTACK_RIGHT,
-         PLAYER_ATTACK_LEFT,
-         PLAYER_ATTACK_UP,
-         PLAYER_ATTACK_DOWN,
-         
-         PLAYER_IDLE_UP,
-         PLAYER_IDLE_DOWN,
-         PLAYER_IDLE_RIGHT,
-         PLAYER_IDLE_LEFT,
-         
-         PLAYER_WALK_UP,
-         PLAYER_WALK_RIGHT,
-         PLAYER_WALK_LEFT,
-         PLAYER_WALK_DOWN,
-         
-         PLAYER_DEATH
-        
-    }
-
-    private _playerState _currentState;
     
-    private Dictionary<_playerState, string> _eventDict = new Dictionary<_playerState, string>()
-    {
-        { _playerState.PLAYER_IDLE_DOWN, "player_idle_front" },
-        { _playerState.PLAYER_IDLE_UP, "player_idle_behind" },
-        { _playerState.PLAYER_IDLE_RIGHT, "player_idle_right" },
-        { _playerState.PLAYER_IDLE_LEFT, "player_idle_right" },
-
-        { _playerState.PLAYER_ATTACK_DOWN, "player_attack_front" },
-        { _playerState.PLAYER_ATTACK_UP, "player_attack_behind" },
-        { _playerState.PLAYER_ATTACK_RIGHT, "player_attack_right" },
-        { _playerState.PLAYER_ATTACK_LEFT, "player_attack_right" },
-
-        { _playerState.PLAYER_WALK_DOWN, "player_walk_front" },
-        { _playerState.PLAYER_WALK_UP, "player_walk_behind" },
-        { _playerState.PLAYER_WALK_RIGHT, "player_walk_right" },
-        { _playerState.PLAYER_WALK_LEFT, "player_walk_right" },
-
-        { _playerState.PLAYER_DEATH, "player_death" }
-
-    };
-
 
 
     // Start is called before the first frame update
@@ -97,12 +54,10 @@ public class playerControllers : MonoBehaviour
                 }
             }
             animator.SetBool("isMoving", success);
-            // UpdateStateMove(success);
         }
         else
         {
             animator.SetBool("isMoving", false);
-            // UpdateStateMove(false);
         }
 
         if (movementInput.x > 0 || facedDirection != 3)
@@ -116,60 +71,7 @@ public class playerControllers : MonoBehaviour
         
     }
 
-    private void UpdateStateMove(bool isMoving)
-    {
-        switch (facedDirection)
-        {
-            case 0:
-                _currentState = isMoving ? _playerState.PLAYER_WALK_UP : _playerState.PLAYER_IDLE_UP; 
-                
-                // animationControl.PlayEvent(_eventDict["playerAttackUp"]);
-                break;
-            case 1:
-                _currentState = isMoving ? _playerState.PLAYER_WALK_RIGHT : _playerState.PLAYER_IDLE_RIGHT;
-                // animationControl.PlayEvent(_eventDict["playerAttackRight"]);
-                break;
-            case 2:
-                _currentState = isMoving ? _playerState.PLAYER_WALK_DOWN : _playerState.PLAYER_IDLE_DOWN;
-                // animationControl.PlayEvent(_eventDict["playerAttackDown"]);
-                break;
-            case 3:
-                _currentState = isMoving ? _playerState.PLAYER_WALK_LEFT : _playerState.PLAYER_IDLE_LEFT;
-                // animationControl.PlayEvent(_eventDict["playerAttackLeft"]);
-                break;
-                
-        }
-        //coba ditaruh disini, tp sepertinya g deh
-        animationControl.PlayEvent(_eventDict[_currentState], 0);
-    }
-
-    private void UpdateStateAttack(bool isAttack)
-    {
-        
-        switch (facedDirection)
-        {
-            case 0:
-                _currentState = isAttack ? _playerState.PLAYER_ATTACK_UP : _playerState.PLAYER_IDLE_UP; 
-                
-                // animationControl.PlayEvent(_eventDict["playerAttackUp"]);
-                break;
-            case 1:
-                _currentState = isAttack ? _playerState.PLAYER_ATTACK_RIGHT : _playerState.PLAYER_IDLE_RIGHT;
-                // animationControl.PlayEvent(_eventDict["playerAttackRight"]);
-                break;
-            case 2:
-                _currentState = isAttack ? _playerState.PLAYER_ATTACK_DOWN : _playerState.PLAYER_IDLE_DOWN;
-                // animationControl.PlayEvent(_eventDict["playerAttackDown"]);
-                break;
-            case 3:
-                _currentState = isAttack ? _playerState.PLAYER_ATTACK_LEFT : _playerState.PLAYER_IDLE_LEFT;
-                // animationControl.PlayEvent(_eventDict["playerAttackLeft"]);
-                break;
-                
-        }
-        //coba ditaruh disini, tp sepertinya g deh
-        animationControl.PlayEvent(_eventDict[_currentState], 1);
-    }
+    
 
     private void ChangeDirection(Vector2 direction)
     {
@@ -219,18 +121,8 @@ public class playerControllers : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("swordTrigger");
-        // UpdateStateAttack(true);
-        Debug.Log("on fire clicked");
-        Debug.Log(facedDirection.ToString());
-        // attackOffset = ani
-        // Invoke("StopFire", );
-        // UpdateStateAttack(false);
     }
 
-    void StopFire()
-    {
-        
-    }
 
     void StartSwordAttack()
     {
