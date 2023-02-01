@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerControllers : MonoBehaviour
+public class PlayerControllers : MonoBehaviour
 {
     Vector2 movementInput;
 
@@ -21,7 +21,6 @@ public class playerControllers : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     public MenuController menuController;
-    public AnimationControl animationControl;
 
     
 
@@ -38,25 +37,7 @@ public class playerControllers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Debug.Log("input pressed");
-            if (menuController is null)
-            {
-                Debug.Log("null menu");
-            }
-            menuController.OpenMenu();
-        }
         
-        if (Input.GetKey(KeyCode.Return))
-        {
-            Debug.Log("input pressed");
-            if (menuController is null)
-            {
-                Debug.Log("null menu");
-            }
-            menuController.CloseMenu();
-        }
     }
     
     private void FixedUpdate()
