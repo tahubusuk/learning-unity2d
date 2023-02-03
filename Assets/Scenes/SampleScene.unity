@@ -28279,7 +28279,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2948327550392080996, guid: 20680d86084ba2b48b6fecf6db1a54d6, type: 3}
   m_PrefabInstance: {fileID: 2948327550107265387}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1933194004
+--- !u!114 &1933194009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28288,7 +28288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1933193999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6354c50f58a3e3745af1e16ac5a2816f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c087e6fc08d4545bbce55604eb62f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1933193999}
@@ -28301,6 +28301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940692457}
+  - component: {fileID: 1940692458}
   m_Layer: 0
   m_Name: Game
   m_TagString: GameController
@@ -28323,6 +28324,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1940692458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940692453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c19e91bad344535b5da28cfe0fe0a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentState: {fileID: 0}
+  PauseMenuState: {fileID: 1933194009}
 --- !u!1001 &2948327550107265387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28330,6 +28345,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2948327549882755800, guid: 20680d86084ba2b48b6fecf6db1a54d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948327549882755800, guid: 20680d86084ba2b48b6fecf6db1a54d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948327549882755800, guid: 20680d86084ba2b48b6fecf6db1a54d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2948327549882755801, guid: 20680d86084ba2b48b6fecf6db1a54d6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -24.137817
