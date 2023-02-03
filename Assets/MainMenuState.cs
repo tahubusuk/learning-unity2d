@@ -6,7 +6,7 @@ namespace DefaultNamespace
     {
         public override void ChangeState(GameController gameController)
         {
-            gameController.CurrentState = gameController.MainGameState;
+            gameController.CurrentState = gameController.FreeRoamState;
             PlayGame();
         }
         

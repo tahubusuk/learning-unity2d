@@ -5,7 +5,7 @@
         
         public override void ChangeState(GameController gameController)
         {
-            
+            gameController.CurrentState = gameController.FreeRoamState;
         }
     }
 }

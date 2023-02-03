@@ -1,8 +1,8 @@
 ﻿namespace DefaultNamespace
 {
-    public class MainGameState : GameState
+    public abstract class MainGameState : GameState
     {
-        public override void ChangeState(GameController gameController)
+        public virtual void ChangeState(GameController gameController)
         {
         }
     }

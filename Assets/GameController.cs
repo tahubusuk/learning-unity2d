@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] MenuController menuController;
-    [SerializeField] PlayerControllers playerControllers;
     
-    private BattleState _battleState;
-    private MainMenuState _mainMenuState;
-    private FreeRoamState _freeRoamState;
-    private MainGameState _mainGameState;
-
     public GameState CurrentState;
-    
-    public MainGameState MainGameState { get; private set; }
     public FreeRoamState FreeRoamState { get; private set; }
-
+    public BattleState BattleState { get; private set; }
+    public PauseMenuState PauseMenuState;
 
     private void Start()
     {
-        _battleState = new BattleState();
-        _mainMenuState = new MainMenuState();
-        CurrentState = _mainMenuState;
     }
 
     private void Update()
@@ -31,17 +20,12 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("key pressed");
-            if (menuController is null)
+            if (PauseMenuState is null)
             {
                 Debug.Log("menu is null");
             }
-            menuController.OpenOrCloseMenu();
+            PauseMenuState.ChangeState(this);
         }
     }
-
-
-    public void ChangeState()
-    {
-        CurrentState.ChangeState(this);
-    }
+    
 }
