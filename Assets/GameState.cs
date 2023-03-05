@@ -3,12 +3,22 @@ using UnityEngine.XR;
 
 namespace DefaultNamespace
 {
-    public abstract class GameState : MonoBehaviour
+    public abstract class GameState
     {
-        public virtual void ChangeState(GameController gameController)
+        public GameController Owner;
+
+        public virtual void PrepareState()
+        {
+            
+        }
+        public virtual void UpdateState()
         {
             
         }
 
+        public virtual void DestroyState()
+        {
+            
+        }
     }
 }

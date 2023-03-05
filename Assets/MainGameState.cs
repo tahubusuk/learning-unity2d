@@ -2,8 +2,18 @@
 {
     public abstract class MainGameState : GameState
     {
-        public virtual void ChangeState(GameController gameController)
+        public override void PrepareState()
         {
+            
+        }
+        public override void UpdateState()
+        {
+            
+        }
+
+        public override void DestroyState()
+        {
+            
         }
     }
 }

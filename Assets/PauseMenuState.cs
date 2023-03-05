@@ -1,33 +1,28 @@
-﻿using UnityEngine;
+﻿using Unity.VersionControl.Git;
+using Unity.VisualScripting;
+using UnityEditor.SceneTemplate;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {
     public class PauseMenuState : MainGameState
     {
-        [SerializeField] GameObject menu;
+        [SerializeField] public GameObject Menu;
 
-        private bool _isActive = false;
-    
-        // Start is called before the first frame update
-        void Start()
+        public override void PrepareState()
         {
-        
+            Menu.SetActive(true);
         }
-
-        // Update is called once per frame
-        void Update()
+        public override void UpdateState()
         {
-            //TODO observer pattern?
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("key pressed");
+                Menu.SetActive(false);
+                Owner.PopState();
+                
             }
-        }
-
-        public void ChangeState(GameController gameController)
-        {
-            menu.SetActive(_isActive = !_isActive);
-            gameController.CurrentState = this;
         }
     }
 }

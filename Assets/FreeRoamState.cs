@@ -5,19 +5,22 @@ namespace DefaultNamespace
 {
     public class FreeRoamState : MainGameState
     {
-        [SerializeField] private PlayerControllers playerControllers;
+        public PlayerControllers playerControllers;
 
-        private void FixedUpdate()
+        public override void PrepareState()
         {
-            if (playerControllers is null)
-            {
-                Debug.Log("playerController is null (free roam state)");
-            }
-            playerControllers.HandleUpdate();
+            
         }
-        public override void ChangeState(GameController gameController)
+
+        public override void UpdateState()
         {
-            gameController.CurrentState = gameController.BattleState;
+            playerControllers.HandleUpdate();
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                // Debug.Log("key pressed");
+                Owner.PushState("pause");
+            }
         }
     }
 }

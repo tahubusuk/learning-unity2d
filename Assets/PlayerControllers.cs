@@ -43,7 +43,7 @@ public class PlayerControllers : MonoBehaviour
         ChangeDirection(movementInput);
         if (movementInput != Vector2.zero)
         {
-            bool success = TryMove(movementInput);
+            var success = TryMove(movementInput);
             if (!success)
             {
                 success = TryMove(new Vector2(movementInput.x, 0));
