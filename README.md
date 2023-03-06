@@ -1,6 +1,6 @@
 # learning-unity
 
-To download the game, just click this <a href> https://drive.google.com/drive/folders/1VUCRoxfV1iZSiWDwzIdUSZCS-SdmOuVz?usp=sharing </a> here
+To download the game, just click this <a href> https://drive.google.com/drive/folders/1VUCRoxfV1iZSiWDwzIdUSZCS-SdmOuVz?usp=sharing </a>
 
 
 
