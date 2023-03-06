@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerControllers : MonoBehaviour
+public class PlayerControllers : MonoBehaviour
 {
     Vector2 movementInput;
 
@@ -16,10 +16,14 @@ public class playerControllers : MonoBehaviour
     public ContactFilter2D movementFilter;
     private Animator animator;
     private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    private int faceDirection = 0;
-    private static readonly int FaceDirection = Animator.StringToHash("faceDirection");
+    public int facedDirection = 0;
+    public SwordAttack swordAttack;
 
     private SpriteRenderer _spriteRenderer;
+    
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +37,13 @@ public class playerControllers : MonoBehaviour
     {
         
     }
-
-    private void FixedUpdate()
+    
+    public void HandleUpdate()
     {
         ChangeDirection(movementInput);
         if (movementInput != Vector2.zero)
         {
-            bool success = TryMove(movementInput);
+            var success = TryMove(movementInput);
             if (!success)
             {
                 success = TryMove(new Vector2(movementInput.x, 0));
@@ -55,33 +59,38 @@ public class playerControllers : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
 
-        if (movementInput.x > 0)
+        if (movementInput.x > 0 || facedDirection != 3)
         {
             _spriteRenderer.flipX = false;
         }
-        else if (movementInput.x < 0)
+        else if (movementInput.x < 0 || facedDirection == 3)
         {
             _spriteRenderer.flipX = true;
         }
+        
     }
+
+    
 
     private void ChangeDirection(Vector2 direction)
     {
         if (direction is { x: > 0, y: 0 })
         {
-            faceDirection = 1;
+            facedDirection = 1;
         } else if (direction is { x: < 0, y: 0 })
         {
-            faceDirection = 1;
+            facedDirection = 3;
         } else if (direction is { x: 0, y: > 0 })
         {
-            faceDirection = 2;
+            facedDirection = 2;
         } else if (direction is { x: 0, y: < 0 })
         {
-            faceDirection = 0;
+            facedDirection = 0;
         }
-
-        animator.SetInteger(FaceDirection, faceDirection);
+        
+        //dibuat khusus karena blm punya animasi left
+        int fd = facedDirection == 3 ? 1 : facedDirection;
+        animator.SetInteger("faceDirection", fd);
 
     }
 
@@ -110,6 +119,18 @@ public class playerControllers : MonoBehaviour
 
     void OnFire()
     {
-        animator.SetTrigger("swordAttack");
+        animator.SetTrigger("swordTrigger");
+    }
+
+
+    void StartSwordAttack()
+    {
+        
+        swordAttack.Attack(facedDirection);
+    }
+
+    void EndSwordAttack()
+    {
+        swordAttack.StopAttack();
     }
 }
