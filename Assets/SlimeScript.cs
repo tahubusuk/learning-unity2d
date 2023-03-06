@@ -23,6 +23,8 @@ public class SlimeScript : EnemyScript
     {
         Move();
     }
+    
+    //picking random point near the spawn point
     private Vector2 PickRandomPoint ()
     {
         var point = _initialPosition;
@@ -30,28 +32,26 @@ public class SlimeScript : EnemyScript
         point.x += Random.Range((float)-0.3, (float)0.3);
         return point;
     }
-    
+
+
     public override void Move()
     {
-        //getting player's position
-        aiPath.destination = player.transform.position;
-        
-        // check if player near aggroDistance, if yes, calculate the path and move
-        if (aiPath.remainingDistance < aggroDistance)
+        if (aiPath.pathPending) return;
+        if (aiPath.reachedEndOfPath || !aiPath.hasPath)
         {
+            aiPath.destination = PickRandomPoint();
             aiPath.SearchPath();
         }
-        //if no, find a position near spawn point and move
-        else
-        {
-            if (aiPath.destination == player.transform.position || aiPath.reachedDestination)
-            {
-                aiPath.destination = PickRandomPoint();
-            }
-        }
+
+        // check if player near aggroDistance, if yes, calculate the path and move
+        var playerPosition = player.transform.position;
+        var enemyPosition = transform.position;
+        distance = Vector2.Distance(playerPosition, enemyPosition);
+        if (!(distance < aggroDistance)) return;
+        aiPath.destination = playerPosition;
+        aiPath.SearchPath();
     }
-    
-    
+
     public override void Attack()
     {
         //todo implement attack -> casting collision to player karna slime lompat
