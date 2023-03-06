@@ -1,6 +1,6 @@
 # learning-unity
 
-To download the game, just click this [here](https://drive.google.com/drive/folders/1VUCRoxfV1iZSiWDwzIdUSZCS-SdmOuVz?usp=sharing)
+To download the game, just click this [here](https://drive.google.com/drive/folders/1StC2J1xMmP9dkGlSAtk8wTAKhuZws8Fq?usp=sharing) and download the built game folder. Please beware that the quit game is not implemented yet, so you need to alt tab and close it manually
 
 
 
