@@ -120,8 +120,6 @@ public class PlayerControllers : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-        Debug.Log("movement man");
-        Debug.Log(movementValue.Get<Vector2>().ToString());
     }
     
     void StartSwordAttack()

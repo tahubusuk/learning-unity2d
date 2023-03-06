@@ -28317,7 +28317,8 @@ MonoBehaviour:
   speed: 1
   distance: 0
   player: {fileID: 662170986}
-  aggroDistance: 0
+  aggroDistance: 1
+  aiPath: {fileID: 1852152775}
 --- !u!212 &1852152770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28519,7 +28520,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852152768}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
   m_Name: 

@@ -1,87 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using Pathfinding;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SlimeScript : EnemyScript
 {
     // Start is called before the first frame update
+    public AIPath aiPath;
+
+    private Vector2 _initialPosition;
+
+    private void Start()
+    {
+        _initialPosition = transform.position;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        // Move();
+        Move();
     }
-
+    private Vector2 PickRandomPoint ()
+    {
+        var point = _initialPosition;
+        point.y += Random.Range((float)-0.3, (float)0.3);
+        point.x += Random.Range((float)-0.3, (float)0.3);
+        return point;
+    }
+    
     public override void Move()
     {
-        //get the player position and enemy position
-        Vector2 playerPosition = player.transform.position;
-        Vector2 enemyPosition = this.transform.position;
+        //getting player's position
+        aiPath.destination = player.transform.position;
         
-        //calculating distance and the direction
-        distance = Vector2.Distance(enemyPosition, playerPosition);
-        
-        //this is for the rotation later
-        var positionDifference = playerPosition - enemyPosition;
-        Debug.Log(positionDifference.ToString());
-        var direction = new Vector2
+        // check if player near aggroDistance, if yes, calculate the path and move
+        if (aiPath.remainingDistance < aggroDistance)
         {
-            x = positionDifference.x switch
-            {
-                > 0 => (float)0.5,
-                < 0 => (float)-0.5,
-                _ => 0
-            },
-            y = positionDifference.y switch
-            {
-                > 0 => (float)0.5,
-                < 0 => (float)-0.5,
-                _ => 0
-            }
-        };
-        Debug.Log("direction");
-        Debug.Log(direction.ToString());
-
-        //moving and rotating
-        // if (distance < aggroDistance)
-        // {
-        // var direction =
-        //     Vector2.MoveTowards(enemyPosition, playerPosition, speed * Time.deltaTime);
-        // }
-        var success = TryMove(direction);
-        if (!success)
+            aiPath.SearchPath();
+        }
+        //if no, find a position near spawn point and move
+        else
         {
-            success = TryMove(new Vector2(direction.x, 0));
-            if (!success)
+            if (aiPath.destination == player.transform.position || aiPath.reachedDestination)
             {
-                success = TryMove(new Vector2(0, direction.y));
+                aiPath.destination = PickRandomPoint();
             }
         }
-        
-        
-        //todo casting collision
-        //todo walking when there's no player
-        //todo get back to the initial place
     }
-
-    private bool TryMove(Vector2 direction)
-    {
-        
-        int count = rb.Cast(
-            direction,
-            movementFilter,
-            castCollisions,
-            speed * Time.fixedDeltaTime + collisionOffset);
-       
-        if (count == 0)
-        {
-            rb.MovePosition(rb.position + Time.fixedDeltaTime * speed * direction);
-            return true;
-        }
-
-        return false;
-    }
+    
     
     public override void Attack()
     {
