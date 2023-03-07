@@ -503,7 +503,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -28295,31 +28295,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48db25a8ac658ec4fb3279f4cf1b4cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  initialHealth: 30
+  currentHealth: 0
   rb: {fileID: 1852152771}
   enemyCollider: {fileID: 1852152772}
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  collisionOffset: 0.05
   _animator: {fileID: 1852152774}
+  aiPath: {fileID: 1852152775}
   speed: 1
   distance: 0
   player: {fileID: 662170986}
   aggroDistance: 0.5
-  aiPath: {fileID: 1852152775}
-  dest: {x: 0, y: 0}
+  _initialPosition: {x: 0, y: 0}
+  maxDistance: 3
+  enemySpawner: {fileID: 0}
 --- !u!212 &1852152770
 SpriteRenderer:
   m_ObjectHideFlags: 0
