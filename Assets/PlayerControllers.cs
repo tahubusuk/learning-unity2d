@@ -9,6 +9,7 @@ public class PlayerControllers : MonoBehaviour
     Vector2 movementInput;
 
     private Rigidbody2D rb;
+    
 
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
@@ -18,6 +19,8 @@ public class PlayerControllers : MonoBehaviour
     private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     public int facedDirection = 0;
     public SwordAttack swordAttack;
+    public int maxHealth;
+    public int currentHealth;
 
     private SpriteRenderer _spriteRenderer;
     
@@ -30,6 +33,7 @@ public class PlayerControllers : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -115,7 +119,16 @@ public class PlayerControllers : MonoBehaviour
         
         return false;
     }
-    
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            //game over
+            animator.SetTrigger("Death");
+        }
+    }
 
     void OnMove(InputValue movementValue)
     {

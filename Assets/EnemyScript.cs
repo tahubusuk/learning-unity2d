@@ -30,7 +30,6 @@ namespace DefaultNamespace
 
         public void Update()
         {
-            Debug.Log(currentHealth.ToString());
             if (currentHealth <= 0) return;
             Move();
         }
@@ -62,14 +61,21 @@ namespace DefaultNamespace
             if (aiPath.pathPending) return;
             if (aiPath.reachedEndOfPath || !aiPath.hasPath)
             {
+                //todo make some waiting time (tried with corroutine but the result is not good)
+                _animator.SetBool("isMoving", false);
                 aiPath.destination = PickRandomPoint();
                 aiPath.SearchPath();
+                _animator.SetBool("isMoving", true);
             }
 
             // check if player near aggroDistance, if yes, calculate the path and move
             if (!(distance < aggroDistance)) return;
             aiPath.destination = playerPosition;
             aiPath.SearchPath();
+
+            Debug.Log(distance.ToString());
+            if (!(distance < 0.2f)) return;
+            Attack();
         }
 
         public virtual void TakeDamage(int damage)
@@ -93,8 +99,7 @@ namespace DefaultNamespace
             _animator.SetTrigger("WaitToRespawn");
             StartCoroutine(Respawn());
         }
-
-
+        
         private IEnumerator Respawn()
         {
             yield return new WaitForSeconds(5f);
