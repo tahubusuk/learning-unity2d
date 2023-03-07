@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         currentState.UpdateState();
+        
+        // todo think where would we put the enemy update function
     }
 
     public void PushState(string stateID)

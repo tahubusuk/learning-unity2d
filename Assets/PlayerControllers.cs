@@ -67,7 +67,12 @@ public class PlayerControllers : MonoBehaviour
         {
             _spriteRenderer.flipX = true;
         }
-        
+
+        // == OnFire, problem is we have states and OnFire does not care abt that. Will try to find another way
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("swordTrigger");
+        }
     }
 
     
@@ -116,13 +121,7 @@ public class PlayerControllers : MonoBehaviour
     {
         movementInput = movementValue.Get<Vector2>();
     }
-
-    void OnFire()
-    {
-        animator.SetTrigger("swordTrigger");
-    }
-
-
+    
     void StartSwordAttack()
     {
         

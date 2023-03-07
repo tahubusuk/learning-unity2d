@@ -1,6 +1,4 @@
-﻿using Unity.VersionControl.Git;
-using Unity.VisualScripting;
-using UnityEditor.SceneTemplate;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

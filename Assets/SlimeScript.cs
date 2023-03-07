@@ -1,36 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
+using Pathfinding;
+using TMPro.Examples;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class SlimeScript : MonoBehaviour
+public class SlimeScript : EnemyScript
 {
     // Start is called before the first frame update
-    private int health = 10;
-    public Collider2D slimeCollider;
-    private Animator _animator;
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
+    // public void Start()
+    // {
+    // }
 
     // Update is called once per frame
-    void Update()
+    // public void Update()
+    // {
+    // }
+    
+    public override void Attack()
     {
-        
+        //todo implement attack -> casting collision to player karna slime lompat
+        base.Attack();
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            _animator.SetTrigger("Destroy");
-        }
-    }
 
-    void Defeated()
-    {
-        Destroy(gameObject);
-    }
 }
