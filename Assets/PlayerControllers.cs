@@ -34,6 +34,7 @@ public class PlayerControllers : MonoBehaviour
         animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -122,11 +123,13 @@ public class PlayerControllers : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (currentHealth <=0) return;
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             //game over
             animator.SetTrigger("Death");
+            animator.SetBool("isDead", true);
         }
     }
 

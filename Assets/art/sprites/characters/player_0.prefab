@@ -139,8 +139,10 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  faceDirection: 0
+  facedDirection: 0
   swordAttack: {fileID: 8768329961794044596}
+  maxHealth: 0
+  currentHealth: 0
 --- !u!61 &6211494909475349882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226,7 +228,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6211494909491629943}
-  - component: {fileID: 6211494909491629942}
   - component: {fileID: 8768329961794044596}
   m_Layer: 0
   m_Name: swordHitbox
@@ -250,42 +251,6 @@ Transform:
   m_Father: {fileID: 6211494909475349883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &6211494909491629942
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6211494909491629940}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.12106706, y: -0.16317679}
-  - {x: 0.11969125, y: -0.15523629}
-  - {x: 0.120495096, y: -0.15074885}
-  - {x: 0.11097685, y: -0.14956903}
-  - {x: 0.10364154, y: -0.16712734}
-  - {x: 0.06600465, y: -0.189017}
-  - {x: 0.0031664073, y: -0.1865276}
-  - {x: -0.057797484, y: -0.15869257}
-  - {x: -0.05836024, y: -0.13018972}
-  - {x: -0.071899, y: -0.1321777}
-  - {x: -0.07080495, y: -0.18763873}
-  - {x: -0.059354626, y: -0.21037666}
-  - {x: -0.014667958, y: -0.24000642}
-  - {x: 0.062436406, y: -0.2400151}
-  - {x: 0.109792754, y: -0.20522001}
-  - {x: 0.12158816, y: -0.16287318}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &8768329961794044596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,4 +263,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58365e1843ef24e429af79c21671b414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordCollider: {fileID: 6211494909491629942}
+  damage: 3
+  swordCollider: {fileID: 0}

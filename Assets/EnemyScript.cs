@@ -73,8 +73,7 @@ namespace DefaultNamespace
             aiPath.destination = playerPosition;
             aiPath.SearchPath();
 
-            Debug.Log(distance.ToString());
-            if (!(distance < 0.2f)) return;
+            if (!(distance < 0.3f)) return;
             Attack();
         }
 

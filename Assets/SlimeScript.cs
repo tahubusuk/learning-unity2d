@@ -11,6 +11,7 @@ public class SlimeScript : EnemyScript
 {
 
     public Collider2D slimeHitbox;
+
     // Start is called before the first frame update
 
     // public void Start()
@@ -24,8 +25,8 @@ public class SlimeScript : EnemyScript
     
     public override void Attack()
     {
-        Debug.Log("is the attack here?");
         slimeHitbox.enabled = true;
+        Debug.Log("attakcing");
         //todo implement attack -> casting collision to player karna slime lompat
         _animator.SetTrigger("SlimeAttack");
     }
@@ -36,6 +37,7 @@ public class SlimeScript : EnemyScript
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
+        
         Debug.Log("trigger entrer");
         if (other.CompareTag("Player"))
         {
@@ -43,8 +45,13 @@ public class SlimeScript : EnemyScript
             Debug.Log(player1);
             if (player1 != null)
             {
-                player1.TakeDamage(5);
+                player1.TakeDamage(1);
             }
+        }
+        else
+        {
+            Debug.Log(other.ToString());
+            Debug.Log("wrong tag ??");
         }
     }
 
