@@ -75,9 +75,12 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.CompareTag("enemy"))
         {
+            Debug.Log("player sowrd triger enemy");
+            
             SlimeScript slime = other.GetComponent<SlimeScript>();
             if (slime != null)
             {
+                Debug.Log(slime.currentHealth.ToString());
                 slime.TakeDamage(damage);
             }
         }

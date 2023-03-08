@@ -21,16 +21,21 @@ namespace DefaultNamespace
         public float aggroDistance;
         public Vector2 _initialPosition;
         public float maxDistance = 3;
-
+        public bool isAttacking;
         public void Start()
         {
             currentHealth = initialHealth;
             _initialPosition = transform.position;
+            isAttacking = false;
         }
 
         public void Update()
         {
-            if (currentHealth <= 0) return;
+            if (currentHealth <= 0)
+            {
+                _animator.SetTrigger("Destroy");
+            };
+            if (isAttacking) return;
             Move();
         }
         
@@ -59,32 +64,25 @@ namespace DefaultNamespace
             if (distance > maxDistance) return;
             
             if (aiPath.pathPending) return;
+            
             if (aiPath.reachedEndOfPath || !aiPath.hasPath)
             {
-                //todo make some waiting time (tried with corroutine but the result is not good)
-                _animator.SetBool("isMoving", false);
                 aiPath.destination = PickRandomPoint();
                 aiPath.SearchPath();
-                _animator.SetBool("isMoving", true);
             }
+            _animator.SetBool("isMoving", true);
 
-            // check if player near aggroDistance, if yes, calculate the path and move
             if (!(distance < aggroDistance)) return;
+            // check if player near aggroDistance, if yes, calculate the path and move
             aiPath.destination = playerPosition;
             aiPath.SearchPath();
-
-            if (!(distance < 0.3f)) return;
+            if (isAttacking) return;
             Attack();
         }
 
         public virtual void TakeDamage(int damage)
         {
             currentHealth -= damage;
-            if (currentHealth <= 0)
-            {
-                _animator.SetTrigger("Destroy");
-            }
-            
         }
 
         public virtual void Attack()
@@ -98,9 +96,14 @@ namespace DefaultNamespace
             _animator.SetTrigger("WaitToRespawn");
             StartCoroutine(Respawn());
         }
-        
+
+        public virtual void ResetEnemy()
+        {
+            
+        }
         private IEnumerator Respawn()
         {
+            ResetEnemy();
             yield return new WaitForSeconds(5f);
             Instantiate(gameObject, _initialPosition, Quaternion.identity);
             Destroy(gameObject);
