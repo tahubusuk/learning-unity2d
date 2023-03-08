@@ -101,6 +101,13 @@ namespace DefaultNamespace
         {
             
         }
+        
+        /*
+         * Enemy respawn.
+         * 1. Reset the variable that's been changed in child classes.
+         * 2. Instantiate the same gameObject again
+         * 3. destroy the old gameObject
+         */
         private IEnumerator Respawn()
         {
             ResetEnemy();
